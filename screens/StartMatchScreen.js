@@ -15,11 +15,9 @@ const StartMatchScreen = props => {
 
     const scoreHandlerA = attr => {
       props.setTeamA(attr, props.teamA_score[attr]+1)
-      console.log('scoreA Handler')
     }
     const scoreHandlerB = attr => {
       props.setTeamB(attr, props.teamB_score[attr]+1)
-      console.log('scoreB Handler')
     }
 
     return (
@@ -32,6 +30,7 @@ const StartMatchScreen = props => {
           {props.allScoreTypes.map(scoreType => {
             return (
               <ScoreTile
+                key={scoreType}
                 scoreA={props.teamA_score[scoreType]}
                 scoreB={props.teamB_score[scoreType]}
                 scoreAHandler={() => scoreHandlerA(scoreType)}
@@ -50,13 +49,14 @@ const StartMatchScreen = props => {
 const styles = StyleSheet.create({
   screen: {
     padding: 10,
-    alignItems: 'center'
+    alignItems: 'center',
   },
   teamNameContainer: {
     flexDirection: 'row'
   },
   scoreBoardContainer: {
-    marginTop: "7%"
+    marginTop: "7%",
+    width: "90%"
   }
 })
 
