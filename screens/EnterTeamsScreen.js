@@ -10,6 +10,7 @@ import {
 import Card from '../components/Card';
 import MainButton from '../components/MainButton';
 import TeamInput from '../components/TeamInput';
+import { teamAimg, teamBimg } from '../constants/images';
 
 const EnterTeamsScreen = props => {
     const [teamA, setTeamA] = useState('');
@@ -56,9 +57,11 @@ const EnterTeamsScreen = props => {
                             value={teamB}
                         />
                     </View>
-                    <MainButton onPress={enterGameHandler}>
-                        Enter Game
-                    </MainButton>
+                    <View style={styles.startGameButtonContainer}>
+                        <MainButton onPress={enterGameHandler}>
+                            Enter Game
+                        </MainButton>
+                    </View>
                 </Card>
             </View>
         </TouchableWithoutFeedback>
@@ -73,6 +76,11 @@ const styles = StyleSheet.create({
     },
     teamInputContainer: {
         flexDirection: 'row',
+    },
+    startGameButtonContainer: {
+        width: "60%",
+        alignSelf: "center",
+        marginTop: "5%"
     }
 })
 

@@ -4,22 +4,18 @@ import {
   StyleSheet,
   Image
 } from 'react-native';
-import Input from './Input';
+import TitleText from './TitleText';
 
-const TeamInput = props => {
+const ImageText = props => {
 
     return (
             <View style={styles.teamInputContainer}>
                 <Image
-                    source={props.teamImg}
+                    source={props.img}
                     resizeMode="center"
                     style={styles.image}
                 />
-                <Input 
-                    onChangeText={props.onChangeText}
-                    value={props.value}
-                    maxLength={30}
-                />
+                <TitleText>{props.children}</TitleText>
             </View>
         );
 };
@@ -32,8 +28,8 @@ const styles = StyleSheet.create({
   },
   image: {
     width: '100%',
-    height: '80%'
+    height: '100%'
   },
 });
 
-export default TeamInput;
+export default ImageText;

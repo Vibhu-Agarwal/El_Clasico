@@ -43,12 +43,16 @@ export default function App() {
 
   let screenView = <EnterTeamScreen setTeamA={setTeamA_Name} setTeamB={setTeamB_Name}/>;
 
-  const teamA_score_handler = () => {
-    setTeamA_score();
+  const teamA_score_handler = (score_attr, score_value) => {
+    let teamA_new_score = {...teamA_score}
+    teamA_new_score[score_attr] = score_value
+    setTeamA_score(teamA_new_score);
   }
 
-  const teamB_score_handler = () => {
-    setTeamB_score();
+  const teamB_score_handler = (score_attr, score_value) => {
+    let teamB_new_score = {...teamB_score}
+    teamB_new_score[score_attr] = score_value
+    setTeamB_score(teamB_new_score);
   }
 
   if (teamA_Name && teamB_Name)
@@ -60,6 +64,7 @@ export default function App() {
                     teamB_score={teamB_score}
                     setTeamA={teamA_score_handler}
                     setTeamB={teamB_score_handler}
+                    allScoreTypes={Object.keys(score_keys)}
                   />;
   }
 
