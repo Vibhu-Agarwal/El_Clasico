@@ -26,21 +26,23 @@ const StartMatchScreen = props => {
           <ImageText img={require('../assets/img/real-madrid.png')}>{props.teamA}</ImageText>
           <ImageText img={require('../assets/img/barcelona.png')}>{props.teamB}</ImageText>
         </View>
-        <ScrollView style={styles.scoreBoardContainer}>
-          {props.allScoreTypes.map(scoreType => {
-            return (
-              <ScoreTile
-                key={scoreType}
-                scoreA={props.teamA_score[scoreType]}
-                scoreB={props.teamB_score[scoreType]}
-                scoreAHandler={() => scoreHandlerA(scoreType)}
-                scoreBHandler={() => scoreHandlerB(scoreType)}
-              >
-                {scoreType}
-              </ScoreTile>
-            );
-          })}
-        </ScrollView>
+        <View style={styles.scoreBoardContainerView}>
+          <ScrollView style={styles.scoreBoardContainer}>
+            {props.allScoreTypes.map(scoreType => {
+              return (
+                <ScoreTile
+                  key={scoreType}
+                  scoreA={props.teamA_score[scoreType]}
+                  scoreB={props.teamB_score[scoreType]}
+                  scoreAHandler={() => scoreHandlerA(scoreType)}
+                  scoreBHandler={() => scoreHandlerB(scoreType)}
+                >
+                  {scoreType}
+                </ScoreTile>
+              );
+            })}
+          </ScrollView>
+        </View>
       </View>
     );
 }
@@ -56,7 +58,9 @@ const styles = StyleSheet.create({
   },
   scoreBoardContainer: {
     marginTop: "7%",
-    width: "90%"
+  },
+  scoreBoardContainerView: {
+    width: "90%",
   }
 })
 

@@ -35,13 +35,14 @@ const ScoreTile = props => {
 
 const styles = StyleSheet.create({
     tileContainer: {
-        marginTop: "2%",
+        marginBottom: "3%",
+        paddingHorizontal: "2%",
         width: "100%"
     },
     tileContainerCard: {
         flexDirection: 'row',
-        paddingVertical: "5%",
-        paddingHorizontal: "5%",
+        paddingVertical: "0%",
+        paddingHorizontal: "2%",
         textAlignVertical: "center",
         justifyContent: "space-between",
         alignItems: "center",
@@ -52,11 +53,10 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "space-between",
         width: "30%",
-        paddingHorizontal: "7%"
     },
     numberContainer: {
         flexDirection: 'row',
-        paddingHorizontal: 4
+        paddingHorizontal: 5
     },
     number: {
       fontSize: 22
