@@ -16,12 +16,12 @@ const fetchFonts = () => {
 };
 
 const score_keys = {
-  goal: 0,
-  shots: 0,
-  shotsOnTarget: 0,
-  fouls: 0,
-  corners: 0,
-  offsides: 0
+  'Goal': 0,
+  'Shots': 0,
+  'On Target': 0,
+  'Fouls': 0,
+  'Corners': 0,
+  'Offsides': 0
 }
 
 export default function App() {
@@ -43,16 +43,12 @@ export default function App() {
 
   let screenView = <EnterTeamScreen setTeamA={setTeamA_Name} setTeamB={setTeamB_Name}/>;
 
-  const teamA_score_handler = (score_attr, score_value) => {
-    let teamA_new_score = {...teamA_score}
-    teamA_new_score[score_attr] = score_value
-    setTeamA_score(teamA_new_score);
+  const teamA_score_handler = new_score => {
+    setTeamA_score({...teamA_score, ...new_score});
   }
 
-  const teamB_score_handler = (score_attr, score_value) => {
-    let teamB_new_score = {...teamB_score}
-    teamB_new_score[score_attr] = score_value
-    setTeamB_score(teamB_new_score);
+  const teamB_score_handler = new_score => {
+    setTeamB_score({...teamB_score, ...new_score});
   }
 
   if (teamA_Name && teamB_Name)
@@ -64,7 +60,7 @@ export default function App() {
                     teamB_score={teamB_score}
                     setTeamA={teamA_score_handler}
                     setTeamB={teamB_score_handler}
-                    allScoreTypes={Object.keys(score_keys)}
+                    allScoreTypes={Object.keys(score_keys).filter(value => value!=='Goal')}
                   />;
   }
 

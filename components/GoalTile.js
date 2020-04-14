@@ -8,24 +8,22 @@ import BodyText from './BodyText';
 import Card from './Card';
 import MainButton from './MainButton';
 
-import Colors from '../constants/colors';
-
-const ScoreTile = props => {
+const GoalTile = props => {
 
     return (
-        <View style={styles.tileContainer}>
+        <View style={{...styles.tileContainer, ...props.style}}>
             <Card style={styles.tileContainerCard}>
                 <View style={styles.scoreAddContainer}>
+                    <View style={styles.numberContainer}>
+                        <BodyText style={styles.number}>{props.scoreA}</BodyText>
+                    </View>
                     <MainButton
                         onPress={props.scoreAHandler}
                         style={{backgroundColor: props.colorTeamA}}
                         textStyle={{color: props.textColorTeamA}}
                     >
-                        +
+                        Goal
                     </MainButton>
-                    <View style={styles.numberContainer}>
-                        <BodyText style={styles.number}>{props.scoreA}</BodyText>
-                    </View>
                 </View>
                 <BodyText>{props.children}</BodyText>
                 <View style={styles.scoreAddContainer}>
@@ -37,7 +35,7 @@ const ScoreTile = props => {
                         style={{backgroundColor: props.colorTeamB}}
                         textStyle={{color: props.textColorTeamB}}
                     >
-                        +
+                        Goal
                     </MainButton>
                 </View>
             </Card>
@@ -58,13 +56,13 @@ const styles = StyleSheet.create({
         textAlignVertical: "center",
         justifyContent: "space-between",
         alignItems: "center",
-        width: "100%"
+        width: "100%",
+        elevation: 0,
     },
     scoreAddContainer: {
-        flexDirection: 'row',
         alignItems: "center",
-        justifyContent: "space-between",
-        width: "30%",
+        justifyContent: "center",
+        width: "40%",
     },
     numberContainer: {
         flexDirection: 'row',
@@ -75,4 +73,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default ScoreTile;
+export default GoalTile;

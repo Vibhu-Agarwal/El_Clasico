@@ -19,6 +19,7 @@ const TeamInput = props => {
                     onChangeText={props.onChangeText}
                     value={props.value}
                     maxLength={30}
+                    style={{...props.style}}
                 />
             </View>
         );

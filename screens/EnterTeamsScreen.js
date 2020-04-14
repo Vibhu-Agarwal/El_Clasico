@@ -11,6 +11,7 @@ import Card from '../components/Card';
 import MainButton from '../components/MainButton';
 import TeamInput from '../components/TeamInput';
 import { teamAimg, teamBimg } from '../constants/images';
+import Colors from '../constants/colors';
 
 const EnterTeamsScreen = props => {
     const [teamA, setTeamA] = useState('');
@@ -50,11 +51,13 @@ const EnterTeamsScreen = props => {
                             onChangeText={value => teamTextChangeHandler(value, setTeamA)}
                             teamImg={require('../assets/img/real-madrid.png')}
                             value={teamA}
+                            style={{color: Colors.teamA}}
                         />
                         <TeamInput
                             onChangeText={value => teamTextChangeHandler(value, setTeamB)}
                             teamImg={require('../assets/img/barcelona.png')}
                             value={teamB}
+                            style={{color: Colors.teamB}}
                         />
                     </View>
                     <View style={styles.startGameButtonContainer}>

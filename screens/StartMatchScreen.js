@@ -8,16 +8,30 @@ import {
 } from 'react-native';
 import ImageText from '../components/ImageText';
 import ScoreTile from '../components/ScoreTile';
+import GoalTile from '../components/GoalTile';
 
 import { teamAimg, teamBimg } from '../constants/images';
+import Colors from '../constants/colors';
 
 const StartMatchScreen = props => {
 
     const scoreHandlerA = attr => {
-      props.setTeamA(attr, props.teamA_score[attr]+1)
+      let valueObj = {}
+      valueObj[attr] = props.teamA_score[attr]+1
+      if (attr === 'On Target')
+      {
+        valueObj['Shots'] = props.teamA_score['Shots']+1
+      }
+      props.setTeamA(valueObj)
     }
     const scoreHandlerB = attr => {
-      props.setTeamB(attr, props.teamB_score[attr]+1)
+      let valueObj = {}
+      valueObj[attr] = props.teamB_score[attr]+1
+      if (attr === 'On Target')
+      {
+        valueObj['Shots'] = props.teamB_score['Shots']+1
+      }
+      props.setTeamB(valueObj)
     }
 
     return (
@@ -26,8 +40,20 @@ const StartMatchScreen = props => {
           <ImageText img={require('../assets/img/real-madrid.png')}>{props.teamA}</ImageText>
           <ImageText img={require('../assets/img/barcelona.png')}>{props.teamB}</ImageText>
         </View>
+        <GoalTile
+            style={{marginTop: "10%"}}
+            scoreA={props.teamA_score['Goal']}
+            scoreB={props.teamB_score['Goal']}
+            scoreAHandler={() => scoreHandlerA('Goal')}
+            scoreBHandler={() => scoreHandlerB('Goal')}
+            colorTeamA={Colors.teamA}
+            colorTeamB={Colors.teamB}
+            textColorTeamA={Colors.teamAText}
+            textColorTeamB={Colors.teamBText}
+          >
+        </GoalTile>
         <View style={styles.scoreBoardContainerView}>
-          <ScrollView style={styles.scoreBoardContainer}>
+          <ScrollView>
             {props.allScoreTypes.map(scoreType => {
               return (
                 <ScoreTile
@@ -36,6 +62,10 @@ const StartMatchScreen = props => {
                   scoreB={props.teamB_score[scoreType]}
                   scoreAHandler={() => scoreHandlerA(scoreType)}
                   scoreBHandler={() => scoreHandlerB(scoreType)}
+                  colorTeamA={Colors.teamA}
+                  colorTeamB={Colors.teamB}
+                  textColorTeamA={Colors.teamAText}
+                  textColorTeamB={Colors.teamBText}
                 >
                   {scoreType}
                 </ScoreTile>
@@ -55,9 +85,6 @@ const styles = StyleSheet.create({
   },
   teamNameContainer: {
     flexDirection: 'row'
-  },
-  scoreBoardContainer: {
-    marginTop: "7%",
   },
   scoreBoardContainerView: {
     width: "90%",
